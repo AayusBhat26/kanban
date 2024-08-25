@@ -1,32 +1,34 @@
-import axios from 'axios'
-import queryString from 'query-string'
+import axios from 'axios';
+import queryString from 'query-string';
 
-const baseUrl = 'https://kanbanclient.vercel.app/api/v1'
-const getToken = () => localStorage.getItem('token')
+// Updated baseUrl
+const baseUrl = 'https://kanbanserver-five.vercel.app/api/v1';
+
+const getToken = () => localStorage.getItem('token');
 
 const axiosClient = axios.create({
   baseURL: baseUrl,
-  paramsSerializer: params => queryString.stringify({ params })
-})
+  paramsSerializer: params => queryString.stringify(params) // Corrected params serialization
+});
 
 axiosClient.interceptors.request.use(async config => {
   return {
     ...config,
     headers: {
       'Content-Type': 'application/json',
-      'authorization': `Bearer ${getToken()}`
+      'Authorization': `Bearer ${getToken()}` // Ensure 'Authorization' is capitalized
     }
-  }
-})
+  };
+});
 
 axiosClient.interceptors.response.use(response => {
-  if (response && response.data) return response.data
-  return response
+  if (response && response.data) return response.data;
+  return response;
 }, err => {
   if (!err.response) {
-    return alert(err)
+    alert('An error occurred.'); // Improved error alert message
   }
-  throw err.response
-})
+  throw err.response;
+});
 
-export default axiosClient
+export default axiosClient;
