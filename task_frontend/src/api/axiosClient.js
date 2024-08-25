@@ -2,7 +2,8 @@ import axios from 'axios';
 import queryString from 'query-string';
 
 // Updated baseUrl
-const baseUrl = 'https://kanbanserver-five.vercel.app/api/v1';
+const baseUrl = 'https://vercel.com/aayush-kumar-bhats-projects/kanbanserver/47YAk8z5r3p6G7YZf5mbBPWhABcB/api/v1';
+
 
 const getToken = () => localStorage.getItem('token');
 
