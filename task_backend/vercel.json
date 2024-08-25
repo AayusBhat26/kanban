@@ -1,14 +1,7 @@
 {
-  "builds": [
-    {
-      "src": "bin/www.js",
-      "use": "@now/node"
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs16.x"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "bin/www.js"
-    }
-  ]
+  }
 }
